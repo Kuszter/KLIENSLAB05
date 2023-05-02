@@ -19,6 +19,11 @@ export class ProductService {
     );
   }
   
+  // Add this method to ProductService
+  getRandomComments(productId: number, limit: number): Observable<ProductComment[]> {
+    return this.http.get<ProductComment[]>(`${this.commentsUrl}?limit=${limit}&skip=${productId * limit}&select=body,postId`);
+  }
+
 
   getProductComments(productId: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.commentsUrl}?postId=${productId}`);

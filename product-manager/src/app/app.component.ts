@@ -41,10 +41,20 @@ export class AppComponent implements OnInit {
     });
   }
 
-  selectProduct(product: Product): void {
-    this.selectedProduct = product;
-    this.productComments = this.productComments || [];
-  }
+  // Update selectProduct method in AppComponent
+// Change this line
+
+
+// Update selectProduct method in AppComponent
+selectProduct(product: Product): void {
+  this.selectedProduct = product;
+  this.productComments = this.productComments || [];
+  this.productService.getRandomComments(product.id, 10).subscribe((comments) => {
+    this.productComments = comments;
+  });
+}
+
+
 
   closeProductDetails(): void {
     this.selectedProduct = null;
