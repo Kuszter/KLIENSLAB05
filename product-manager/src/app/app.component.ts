@@ -41,11 +41,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Update selectProduct method in AppComponent
-// Change this line
-
-
-// Update selectProduct method in AppComponent
+ 
 selectProduct(product: Product): void {
   this.selectedProduct = product;
   this.productComments = this.productComments || [];
