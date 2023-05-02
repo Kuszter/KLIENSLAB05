@@ -10,9 +10,20 @@ export class Product {
     category: string;
     thumbnail: string;
     images: string[];
+    comments?: Comment[];
   
     constructor(data: any) {
-      Object.assign(this, data);
+      this.id = data.id || 0;
+      this.title = data.title || '';
+      this.description = data.description || '';
+      this.price = data.price || 0;
+      this.discountPercentage = data.discountPercentage || 0;
+      this.rating = data.rating || 0;
+      this.stock = data.stock || 0;
+      this.brand = data.brand || '';
+      this.category = data.category || '';
+      this.thumbnail = data.thumbnail || '';
+      this.images = data.images || [];
     }
   }
   
