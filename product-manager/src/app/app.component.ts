@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from './services/product.service';
 import { Product } from '../app/models/product';
-import { Comment } from '../app/models/comment';
+import { ProductComment } from '../app/models/comment';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { Comment } from '../app/models/comment';
 export class AppComponent implements OnInit {
   products: Product[] = [];
   selectedProduct: Product | null = null;
-  productComments: Comment[] = [];
+  productComments: ProductComment[] = [];
 
   constructor(private productService: ProductService) {}
 
@@ -25,14 +25,15 @@ export class AppComponent implements OnInit {
         products.forEach((productData) => {
           const product = new Product(productData);
           this.products.push(product);
-
+  
           this.productService.getProductComments(product.id).subscribe((comments) => {
-            product.comments = comments.map((commentData) => new Comment(commentData));
+            product.comments = comments.map((commentData) => new ProductComment(commentData));
           });
         });
       });
     }
   }
+  
 
   deleteProduct(product: Product): void {
     this.productService.deleteProduct(product.id).subscribe(() => {
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
 
   selectProduct(product: Product): void {
     this.selectedProduct = product;
-    this.productComments = product.comments || [];
+    this.productComments = this.productComments || [];
   }
 
   closeProductDetails(): void {
