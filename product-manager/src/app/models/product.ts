@@ -1,4 +1,4 @@
-import { ProductComment } from "./comment";
+
 
 export class Product {
     id: number;
@@ -12,7 +12,7 @@ export class Product {
     category: string;
     thumbnail: string;
     images: string[];
-    comments?: ProductComment[];
+   
   
     constructor(data: any) {
       this.id = data.id || 0;
